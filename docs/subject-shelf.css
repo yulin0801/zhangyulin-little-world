@@ -1,0 +1,199 @@
+.subject-shelf {
+  --shelf-serif: "Noto Serif SC","Source Han Serif SC","Songti SC",STSong,KaiTi,SimSun,serif;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+  margin-inline: auto;
+  padding: clamp(.95rem, 2.5vw, 1.45rem) clamp(.7rem, 4vw, 2rem) clamp(1.35rem, 3.2vw, 2.2rem);
+  border: 1px solid #d9bcdf32;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 50% 28%, #897087 0%, #5b4563 27%, #363049 60%, #24243b 100%);
+}
+.subject-shelf--single { max-width: 39rem; }
+.subject-shelf--pair { max-width: 48rem; }
+.subject-shelf::before {
+  position: absolute;
+  z-index: -1;
+  inset: auto 14% 1.5% 14%;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #151124af;
+  filter: blur(12px);
+  content: "";
+}
+.subject-shelf-case {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: .55rem .62rem 0;
+  border: 1px solid #d1b7d098;
+  border-radius: 4px 4px 5px 5px;
+  background:
+    linear-gradient(90deg, #67566e 0, #c0a0b9 2px, #876b84 5px, #5b4867 9px, transparent 11px calc(100% - 11px), #695772 calc(100% - 10px), #aa8fa9 calc(100% - 4px), #5a4665 100%),
+    linear-gradient(170deg, #65526b, #413348 80%);
+  box-shadow: .36rem .32rem 0 -.08rem #3e3149, .6rem .9rem 2rem #2115277d, inset 0 1px #fff2f44c;
+}
+.subject-shelf-heading {
+  display: grid;
+  place-items: center;
+  padding: .48rem .8rem .65rem;
+  border-bottom: 1px solid #d0b3c380;
+}
+.subject-shelf-heading h2 {
+  position: relative;
+  min-width: 8em;
+  margin: 0;
+  padding: .42rem 1.42rem;
+  border: 1px solid #e9c9c696;
+  border-radius: 2px;
+  box-shadow: 0 .12rem .32rem #3826388c, inset 0 1px #fdf1e845;
+  background: linear-gradient(#b8868c, #946476);
+  color: #fff3e5;
+  font: 500 clamp(1rem, 3vw, 1.33rem)/1.4 var(--shelf-serif);
+  letter-spacing: .14em;
+  text-align: center;
+  text-shadow: 0 1px #623c56;
+}
+.subject-shelf-heading h2::before,
+.subject-shelf-heading h2::after {
+  position: absolute;
+  top: 50%;
+  width: .24rem;
+  height: .24rem;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  box-shadow: 0 1px #75465d;
+  background: #edcbbe;
+  content: "";
+}
+.subject-shelf-heading h2::before { left: .48rem; }
+.subject-shelf-heading h2::after { right: .48rem; }
+.subject-shelf-tiers {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #b893ad #4b3851;
+  background: linear-gradient(90deg,#20192975 0,transparent 10% 90%,#2019296b),radial-gradient(ellipse at 48% 3%,#796177,#524155 52%,#46364e);
+  box-shadow: inset 0 .4rem 1.15rem #20162582;
+}
+.subject-shelf-tier {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: max-content;
+  min-width: 100%;
+  gap: clamp(.75rem, 2.8vw, 1.8rem);
+  margin: 0;
+  padding: clamp(.8rem, 2.5vw, 1.3rem) clamp(.65rem, 3vw, 1.65rem) 1.07rem;
+  list-style: none;
+}
+.subject-shelf-tier::before {
+  position: absolute;
+  pointer-events: none;
+  inset: auto .1rem .86rem .1rem;
+  height: 1.3rem;
+  border: 1px solid #c09aa86b;
+  border-bottom: 0;
+  background: linear-gradient(#7c6074 0%, #bf98aa 100%);
+  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+  content: "";
+}
+.subject-shelf-tier::after {
+  position: absolute;
+  pointer-events: none;
+  inset: auto 0 0;
+  height: .9rem;
+  transform: translateY(-.06rem);
+  border: 1px solid #c8a2bb8c;
+  border-radius: 2px 2px 3px 3px;
+  box-shadow: 0 .19rem .6rem #2a1c339c, inset 0 1px #efc9d479;
+  background: linear-gradient(#9f7894, #705671 56%, #4a364e 100%);
+  content: "";
+}
+.subject-shelf-tier > li {
+  position: relative;
+  display: flex;
+  flex: 0 0 clamp(8.3rem, 27vw, 12.25rem);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.subject-book {
+  --subject-book-paper: #eee0ca;
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: clamp(10.4rem, 42vw, 13.4rem);
+  overflow-wrap: anywhere;
+  border: 1px solid #fff7e1a6;
+  border-left: .27rem solid #755a6e8c;
+  border-radius: 2px;
+  box-shadow: .18rem .17rem 0 #e0cdb2, .32rem .27rem 0 #ac8d9b, .48rem .41rem .35rem #302539ad, -.13rem .25rem .7rem #3123388c;
+  background: linear-gradient(140deg, #fff8ef70 0%, transparent 65%), var(--subject-book-paper);
+  color: #34273a;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.subject-book--rose { --subject-book-paper: #eac4cd; }
+.subject-book--sage { --subject-book-paper: #d4dac8; }
+.subject-book--violet { --subject-book-paper: #d6cee7; }
+.subject-book--sand { --subject-book-paper: #e8c4a2; }
+.subject-book:hover, .subject-book:focus-visible {
+  color: #34273a;
+  transform: translateY(-.24rem);
+  box-shadow: .16rem .17rem 0 #f2dfc5, .33rem .32rem 0 #ac8d9b, .46rem .65rem 1.15rem #28192fc2;
+}
+.subject-book:focus-visible { outline: 2px solid #ffeacb; outline-offset: 3px; }
+.subject-book-cover {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+  padding: .58rem .61rem;
+  gap: .36rem;
+}
+.subject-book-kind {
+  display: block;
+  align-self: start;
+  padding-bottom: .25rem;
+  border-bottom: 1px solid #5d415479;
+  color: #634250;
+  font: 600 .64rem/1.32 var(--shelf-serif);
+  letter-spacing: .035em;
+}
+.subject-book-title {
+  display: block;
+  font: 600 clamp(.74rem, 2.6vw, .97rem)/1.32 var(--shelf-serif);
+  white-space: pre-line;
+}
+.subject-book[lang="en"] .subject-book-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.67rem, 2.5vw, .79rem);
+  line-height: 1.2;
+}
+.subject-book-preview {
+  display: block;
+  height: clamp(3.2rem, 15vw, 5.15rem);
+  overflow: hidden;
+  border: 1px solid #64496368;
+  background: #fdf4e8;
+}
+.subject-book-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 11%;
+}
+@media (max-width: 385px) {
+  .subject-shelf-case { padding: .4rem .36rem 0; }
+  .subject-book-cover { padding: .44rem .42rem; }
+  .subject-book-title { font-size: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .subject-book { transition: none; }
+  .subject-book:hover, .subject-book:focus-visible { transform: none; }
+}

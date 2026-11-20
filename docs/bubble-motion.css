@@ -1,0 +1,139 @@
+/* Load after v7.css. The link is a stationary hit target; only its visual
+   surface moves. Idle transform and interactive translate/scale stay separate. */
+#home[data-bubble-motion] .identity-bubble {
+  --bubble-mouse-x: 0px;
+  --bubble-mouse-y: 0px;
+  --bubble-tilt: 0deg;
+  --bubble-light-x: 32%;
+  --bubble-light-y: 24%;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  animation: none;
+  transform: none;
+  transition: color .25s ease;
+  color: #624957;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  will-change: auto;
+}
+
+#home[data-bubble-motion] .identity-bubble::before { content: none; }
+
+#home .bubble-surface {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  border: 1px solid #ffffffb8;
+  border-radius: inherit;
+  background: var(--bubble);
+  box-shadow: inset 0 4px 20px #ffffff55, 0 9px 32px #8a587009;
+  pointer-events: none;
+  translate: 0 0;
+  rotate: 0deg;
+  scale: 1;
+  transform-origin: 50% 58%;
+  animation: bubble-breathe 7s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transition:
+    translate .58s cubic-bezier(.18, 1.45, .35, 1),
+    scale .58s cubic-bezier(.18, 1.55, .35, 1),
+    rotate .6s cubic-bezier(.2, 1.2, .4, 1),
+    border-radius .65s cubic-bezier(.18, 1.3, .35, 1),
+    box-shadow .4s ease;
+}
+
+#home .bubble-surface::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid #ffffff60;
+  border-radius: inherit;
+  transition: transform .6s cubic-bezier(.18, 1.4, .35, 1), border-color .3s ease;
+}
+
+#home .bubble-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at var(--bubble-light-x) var(--bubble-light-y), #ffffff9c 0, #ffffff26 37%, transparent 68%);
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+#home .bubble-surface > span { position: relative; z-index: 1; }
+#home .bubble-surface > span:first-child {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: clamp(19px, 1.8vw, 24px);
+  letter-spacing: .08em;
+  line-height: 1.5;
+}
+#home[data-bubble-motion] .bubble-arrow {
+  transform: translate(0, 0) scale(1);
+  color: #78586b90;
+  transition: transform .48s cubic-bezier(.18, 1.55, .35, 1), color .25s ease;
+}
+
+/* Pointer type is checked in JS, so touch taps do not leave sticky hover. */
+#home[data-bubble-motion] .identity-bubble:is(.is-bubble-hover, :focus-visible) { z-index: 4; color: #492a3b; }
+#home[data-bubble-motion] .identity-bubble:focus-visible { outline: none; }
+#home .identity-bubble:focus-visible .bubble-surface { outline: 2px solid var(--accent, #a05f7d); outline-offset: 6px; }
+#home .identity-bubble:is(.is-bubble-hover, :focus-visible) .bubble-surface {
+  animation-play-state: paused;
+  translate: var(--bubble-mouse-x) calc(-14px + var(--bubble-mouse-y));
+  rotate: var(--bubble-tilt);
+  scale: 1.075 1.045;
+  border-radius: 53% 47% 49% 51% / 43% 51% 49% 57%;
+  box-shadow: inset 0 5px 23px #ffffffa3, 0 24px 38px -10px #88516c38, 0 7px 15px #88516c0b;
+}
+
+#home .identity-bubble:is(.is-bubble-hover, :focus-visible) .bubble-surface::after { opacity: .65; }
+#home .identity-bubble:is(.is-bubble-hover, :focus-visible) .bubble-surface::before { transform: scale(.965); border-color: #ffffffc2; }
+#home[data-bubble-motion] .identity-bubble:is(.is-bubble-hover, :focus-visible) .bubble-arrow { transform: translate(6px, -6px) scale(1.14); color: #694357; }
+
+#home .identity-bubble:is(:active, .is-bubble-pressed) .bubble-surface {
+  animation-play-state: paused;
+  translate: 0 2px;
+  rotate: 0deg;
+  scale: 1.015 .94;
+  border-radius: 48% 52% 47% 53% / 53% 50% 50% 47%;
+  box-shadow: inset 0 3px 16px #ffffff7a, 0 4px 12px #88516c24;
+  transition-duration: .1s, .1s, .1s, .16s, .1s;
+}
+
+#home[data-bubble-motion] .identity-bubble:is(:active, .is-bubble-pressed) .bubble-arrow { transform: translate(3px, -3px) scale(.96); transition-duration: .1s; }
+#home .identity-bubble:is(:active, .is-bubble-pressed) .bubble-surface::after { opacity: .38; }
+#home[hidden] .bubble-surface, body.intro-running #home .bubble-surface { animation-play-state: paused; }
+
+@media (max-width: 720px) {
+  #home .bubble-surface { box-shadow: inset 0 4px 15px #ffffff70, 0 6px 20px #8a58700c; }
+  #home .bubble-surface::before { inset: 5px; }
+  #home .bubble-surface > span:first-child { font-size: 17px; letter-spacing: .03em; }
+}
+@media (max-width: 380px) {
+  #home .bubble-surface > span:first-child { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home .bubble-surface {
+    animation: none !important;
+    transform: none !important;
+    translate: none !important;
+    rotate: none !important;
+    scale: none !important;
+    border-radius: var(--shape, 50%) !important;
+    transition: none !important;
+  }
+  #home .bubble-surface::before,
+  #home .bubble-surface::after,
+  #home[data-bubble-motion] .bubble-arrow {
+    transform: none !important;
+    transition: none !important;
+  }
+}

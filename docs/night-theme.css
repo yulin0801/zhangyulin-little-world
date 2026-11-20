@@ -1,0 +1,338 @@
+/* Match the island scene's navy sky, lavender surfaces and warm lights. */
+html:has(body[data-view]:not([data-view="home"])) {
+  background: #15162d;
+  color-scheme: dark;
+}
+
+body[data-view]:not([data-view="home"]) {
+  --paper: #15162d;
+  --ink: #fff1eb;
+  --muted: #bfbad0;
+  --line: #494b66;
+  --accent: #ffc2ce;
+  --pink: #3e3454;
+  --pink-soft: #322b49;
+  --pink-white: #282843;
+  --orange: #efae90;
+  --night-surface: #22243d;
+  --night-raised: #2c2d4b;
+  --night-deep: #1a1b32;
+  --night-active: #393650;
+  --night-light: #fff7ed;
+  --night-dark-ink: #392e42;
+  --night-shadow: #10102288;
+  background: radial-gradient(ellipse at 50% 12rem, #292b49 0, var(--paper) 52rem);
+  color: var(--ink);
+  min-height: 100vh;
+  color-scheme: dark;
+}
+
+body[data-view]:not([data-view="home"]) ::selection {
+  background: var(--accent);
+  color: var(--night-dark-ink);
+}
+
+/* Site navigation */
+.site-header {
+  background: #191a32;
+  border-color: var(--line);
+  box-shadow: 0 5px 24px #0f102533;
+}
+.site-header::after { content: none; }
+.site-header .wordmark {
+  color: var(--ink);
+  letter-spacing: .025em;
+  white-space: nowrap;
+}
+.site-header .wordmark:hover,
+.site-header .replay-button:hover,
+.site-header nav a[aria-current="page"] { color: var(--accent); }
+.site-header nav a[aria-current="page"]::after { background: var(--accent); }
+.site-header nav .nav-dropdown {
+  background: var(--night-surface);
+  border-color: var(--line);
+  box-shadow: 0 12px 30px var(--night-shadow);
+}
+.site-header nav .nav-dropdown a { border-color: var(--line); }
+.site-header nav .nav-dropdown a:hover {
+  color: var(--accent);
+  background: var(--night-active);
+}
+.back-link { font-weight: 500; }
+@media (max-width: 850px) {
+  .site-header nav {
+    background: var(--night-deep);
+    border-color: var(--line);
+    box-shadow: 0 12px 26px var(--night-shadow);
+  }
+  .site-header nav .nav-dropdown { background: transparent; box-shadow: none; }
+  .site-header nav > .nav-label,
+  .site-header nav > .nav-group { border-color: var(--line); }
+}
+
+/* Academic index and media. Paper shown in a cover retains its original colors. */
+.academic-hub-heading h1 > span,
+.academic-portal-index b,
+.work-open,
+.award-year,
+.award-project-tag,
+.audio-track-number { color: var(--accent); }
+.academic-section-tabs a[aria-current="page"]::after { background: var(--accent); }
+.portfolio-papers { background: radial-gradient(ellipse at 18% 3%, #776b8b, #353553 74%); }
+.honors-composition { background: radial-gradient(ellipse at 75% 40%, #68516d, #363650 74%); }
+.portal-art-label, .paper-note, .honor-art-caption { color: var(--ink); }
+.paper-note {
+  background: #191a32ed;
+  border: 1px solid #e2bfca44;
+  border-radius: 3px;
+  padding: 5px 8px;
+}
+.honor-orbit svg { stroke: var(--orange); }
+.academic-portal-arrow { color: var(--accent); background: var(--night-surface); border-color: var(--line); }
+.academic-portal:hover .academic-portal-arrow { background: var(--accent); color: var(--night-dark-ink); }
+.card-kind,
+.award-result { background: #3b314e; color: var(--accent); border-color: #68516c; }
+.catalogue-grid .card-image,
+.works-library .document-preview,
+.works-library .document-preview.tone-sage,
+.works-library .document-preview.tone-peach,
+.works-library .document-preview.tone-cream,
+.title-sheet,
+.title-sheet.tone-sage,
+.title-sheet.tone-peach,
+.title-sheet.tone-cream {
+  background: var(--night-raised);
+  border-color: var(--line);
+}
+.title-sheet:hover { background: var(--night-active); }
+.award-project,
+.ocean-award-evidence,
+.audio-track,
+.audio-original-notes > div {
+  background: var(--night-surface);
+  border-color: var(--line);
+}
+.award-project:hover, .award-project:focus-within { background: var(--night-raised); }
+.award-project-image { background: var(--night-raised); }
+.award-section-heading > span { color: var(--muted); }
+.audio-original-notes { color: var(--muted); border-color: var(--line); }
+.audio-evidence-links button { color: var(--accent); border-color: var(--line); }
+.works-library .catalogue-grid .audio-cover { background: radial-gradient(ellipse at 45% 35%, #646182, #30314f 80%); }
+.audio-cover-corner { color: var(--accent); }
+.audio-cover-play { background: var(--night-deep); color: var(--accent); border-color: var(--line); }
+.audio-record-label { background: var(--orange); border-color: #f7d4ba; }
+.collection-button, .collection-button:hover {
+  background: var(--orange);
+  color: var(--night-dark-ink);
+  border-color: var(--orange);
+}
+
+/* Honors and other evidence. Only the surrounds are recolored. */
+.academic-awards header.awards-heading h1 { color: var(--ink); }
+.honor-wall {
+  background: #292945;
+  border-color: #3c3c5b;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line), 0 7px 0 #1c1c34;
+}
+.honor-wall-piece::after {
+  background: #514660;
+  border-color: #776178;
+  border-bottom-color: #655069;
+  box-shadow: 0 5px 8px var(--night-shadow);
+}
+.honor-wall-mat { border-color: #967c85; box-shadow: 2px 2px 0 #856f83, 4px 7px 11px var(--night-shadow); }
+.honor-wall-zoom { color: var(--night-dark-ink); }
+.honor-wall-label > span,
+.honor-wall-help { color: var(--muted); }
+.honor-wall-help { border-color: var(--line); }
+.academic-awards .certificate-frame,
+.certificate-frame,
+.language-certificate-grid .certificate-frame { background: var(--night-raised); border-color: var(--line); }
+.academic-awards .certificate-card:hover .certificate-frame,
+.certificate-card:hover .certificate-frame { background: var(--night-active); border-color: #87718c; }
+.academic-awards .certificate-open,
+.certificate-open { background: var(--night-deep); border-color: #685873; color: var(--ink); }
+.academic-awards .award-section-heading::after { background: var(--orange); }
+
+/* Shared readers and image lightbox. Keep the document itself on neutral paper. */
+.reader-toolbar, .reader-pages, .gallery-frame {
+  background: var(--night-surface);
+  border-color: var(--line);
+}
+.reader-page { background: #fff; }
+.document-tabs button[aria-pressed="true"],
+.reader-toolbar button[aria-pressed="true"] {
+  background: var(--night-active);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.reader-toolbar :is(.reader-navigation > button, .reader-enlarge):hover:not(:disabled),
+.viewer-arrow:hover:not(:disabled),
+.viewer-toolbar button:hover { background: var(--night-raised); }
+.reader-page-label select option { background: var(--night-surface); color: var(--ink); }
+.reading-content { color: var(--muted); }
+.reading-paper { background: var(--night-light); border-color: var(--line); }
+.reading-paper .reading-content, .reading-paper .reading-content h2 { color: var(--night-dark-ink); }
+.gallery-frame::after { background: var(--night-deep); color: var(--ink); }
+.image-viewer { background: var(--night-deep); color: var(--ink); }
+.image-viewer::backdrop { background: #090a1bd9; }
+.viewer-toolbar { border-color: var(--line); }
+.viewer-arrow { background: var(--night-surface); border: 1px solid var(--line); }
+
+/* Education and skills. Logos sit on a softly lit plate. */
+.journey-page, .journey-page .school-detail h2 { color: var(--ink); }
+.journey-heading .profile-eyebrow,
+.journey-city,
+.journey-page .school-period,
+.journey-page .school-department,
+.journey-page .school-grade-summary { color: var(--muted); }
+.journey-range,
+.journey-marker,
+.journey-page .school-record-link { color: var(--accent); }
+.journey-replay { background: var(--night-surface); color: var(--accent); border-color: var(--line); }
+.journey-replay:hover { background: var(--night-active); }
+.journey-range i { background: var(--orange); }
+.journey-ribbon { stroke: #4a4262; }
+.journey-track { stroke: #8c78a5; }
+.journey-flow { stroke: #ffd0e1; opacity: .6; }
+.journey-pin { border-color: var(--paper); background: var(--accent); box-shadow: 0 0 0 1px #9b7c9d; }
+.journey-marker:hover .journey-year, .journey-marker[aria-pressed="true"] .journey-year { color: var(--orange); }
+.journey-school-card { background: var(--night-surface); border-color: var(--line); box-shadow: 0 7px 0 #14142a; }
+.journey-page .is-current .journey-school-card { border-color: #c18fa0; }
+.journey-page .school-visual { background: #f8f3ee; border-color: var(--line); }
+.journey-page .school-status,
+.tone-lilac .school-status,
+.tone-mint .school-status,
+.tone-blue .school-status { background: var(--night-active); color: var(--accent); }
+.journey-page .school-record-link { border-bottom-color: var(--line); }
+.skills-page .skill-panel,
+.skills-page .language-skills { background: var(--night-surface); border: 1px solid var(--line); }
+.skills-page .tools-skill { background: var(--night-raised); }
+.skills-page .tool-list li { background: var(--night-surface); border-color: var(--line); }
+.skills-page .practice-skills, .method-tags li, .skill-evidence, .skill-evidence > a,
+.language-certificate-grid, .profile-text-link { border-color: var(--line); }
+.skills-page .practice-role,
+.skill-panel-top > span:last-child,
+.language-skills dt { color: var(--accent); }
+
+/* Internships and campus activity. */
+.internship-page {
+  --internship-ink: var(--ink);
+  --internship-muted: var(--muted);
+  --internship-line: var(--line);
+  --internship-accent: var(--accent);
+  background: transparent;
+}
+.career-heading-copy > .page-label,
+.career-track-caption,
+.career-stop-copy small,
+.career-chapter-label,
+.internship-brand > .internship-date,
+.internship-date,
+.campus-practice .campus-period { color: var(--muted); }
+.career-total { color: var(--accent); border-color: var(--line); }
+.internship-local-nav.career-track, .internship-local-nav.career-track.is-docked {
+  background: #22243df5;
+  border-color: var(--line);
+  box-shadow: 0 7px 24px #0d0e2060;
+}
+.career-track .career-stops > button { color: var(--muted); }
+.career-stop-dot { color: var(--accent); background: var(--night-deep); border-color: var(--line); }
+.career-track .career-stops > button[aria-current],
+.career-stops button[aria-current] .career-stop-copy strong { color: var(--ink); }
+.career-track .career-stops > button[aria-current] .career-stop-dot {
+  background: var(--accent);
+  color: var(--night-dark-ink);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px #ffc2ce20;
+}
+.career-stops img { mix-blend-mode: normal; border-radius: 4px; }
+.career-track-progress { background: var(--line); }
+.career-track-progress > span { background: var(--accent); }
+.internship-timeline::before { background: linear-gradient(#987f9b,#747d9b,#907ca7); }
+.internship-page .internship-timeline-point {
+  background: var(--night-surface);
+  color: var(--muted);
+  border-color: var(--line);
+  box-shadow: 0 0 0 7px var(--paper);
+}
+.internship-page .internship-row.is-current .internship-timeline-point {
+  background: var(--accent);
+  color: var(--night-dark-ink);
+  border-color: var(--accent);
+}
+.internship-evidence,
+.internship-row .internship-desk { background: var(--night-surface); border-color: var(--line); }
+.internship-page .internship-row .internship-story,
+.internship-page .internship-story .internship-desk,
+.internship-brand .internship-film-link,
+.internship-film-reflection, .internship-reflection, .career-next,
+.internship-page-footer, .campus-practice { border-color: var(--line); }
+.career-year, .internship-row:nth-child(2) .career-year, .internship-row:nth-child(3) .career-year,
+.internship-metrics dt, .internship-story-mint .internship-metrics dt { color: var(--accent); }
+.internship-page .internship-metrics { background: #2c2d4b99; }
+.internship-story-copy p, .internship-work-heading > p,
+.internship-work-heading > .page-label, .internship-work-index > .page-label,
+.internship-work-index nav > a, .internship-work-pagination small,
+.career-next small, .campus-practice p { color: var(--muted); }
+.internship-story-copy h3, .internship-work-page { color: var(--ink); }
+.internship-brand .internship-film-link, .internship-film-cover:hover .internship-film-link,
+.internship-page-footer > a, .internship-reflection summary,
+.internship-return-link, .internship-work-index nav > a[aria-current],
+.internship-work-index nav > a:hover, .career-next > button, .career-next > a { color: var(--accent); }
+.internship-craft-tags > span, .internship-current-badge {
+  background: var(--night-active);
+  color: var(--accent);
+  border-color: var(--line);
+}
+.manuscript-desk-controls button { background: var(--night-deep); color: var(--accent); border-color: var(--line); }
+.manuscript-rail, .manuscript-excerpt { scrollbar-color: #8e789b transparent; }
+.internship-page .manuscript-card { background: var(--night-raised); border-color: var(--line); }
+.internship-page .manuscript-card.is-expanded,
+.internship-page .manuscript-card.is-pinned { background: var(--night-deep); border-color: #ac86a3; }
+.manuscript-card-content, .manuscript-excerpt { background: transparent; }
+.manuscript-number, .manuscript-category, .manuscript-card-mark, .manuscript-card-bottom a { color: var(--accent); }
+.manuscript-excerpt p { color: var(--ink); }
+.manuscript-card-bottom { border-color: var(--line); }
+.internship-work-body { background: var(--night-light); border-color: var(--line); }
+.internship-work-body p { color: var(--night-dark-ink); }
+.internship-page .internship-proof,
+.internship-page .campus-practice article.campus-proof-record {
+  background: var(--night-surface);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.internship-page .internship-proof:hover { background: var(--night-raised); }
+.internship-proof-copy > span,
+.internship-page .campus-proof-button,
+.internship-page .campus-proof-hours { color: var(--accent); }
+
+/* Travel and contact. The contact card itself is still a paper object. */
+.travel-page { --travel-rose: var(--accent); --travel-line: var(--line); --travel-soft: var(--night-raised); }
+.travel-globe-stage::before { background: radial-gradient(ellipse,#6b5b9d65,transparent 65%); }
+.travel-globe-marker { background: #252640ee; border-color: #746889; color: var(--ink); }
+.travel-globe-marker:hover, .travel-globe-marker:focus-visible { background: var(--night-active); }
+.travel-photo, .travel-river-photo, .live-record-photo, .life-portal-image { background: var(--night-surface); }
+.travel-destinations nav { scrollbar-color: #8e789b transparent; }
+.travel-album-groups, .travel-album-filter, .travel-album-filters { border-color: var(--line); }
+.business-contact-page { color: var(--ink); }
+.business-card-stage {
+  background: radial-gradient(ellipse at 25% 30%, #59516f, #292b47 65%);
+  border-color: var(--line);
+}
+.business-card-stage::before, .business-card-stage::after {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #efb3a4aa 40%, #c2a2d180 70%, transparent);
+}
+.business-card { color: var(--night-dark-ink); }
+.business-contact-page .back-link:focus-visible { outline-color: var(--accent); }
+
+/* Local accent overrides where old components set their own focus colors. */
+.internship-page :is(a,button,summary):focus-visible,
+.internship-work-page :is(a,button,summary):focus-visible,
+.journey-marker:focus-visible,
+.journey-replay:focus-visible,
+.honor-wall-piece:focus-visible,
+.audio-evidence-links button:focus-visible,
+.audio-original-notes summary:focus-visible { outline-color: var(--accent); }

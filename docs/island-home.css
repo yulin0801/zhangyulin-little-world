@@ -1,0 +1,111 @@
+body[data-view="home"]{background:#14162e;color:#fff3ed}
+.island-home{
+  position:relative;
+  isolation:isolate;
+  min-height:100svh;
+  overflow:hidden;
+  background:radial-gradient(ellipse at 50% 56%,#303150,#20213e 48%,#15162d 83%);
+}
+.island-home[hidden]{display:none}
+.island-home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  opacity:.28;
+  pointer-events:none;
+  background-image:radial-gradient(circle at center,#ffc7e0 0 1px,transparent 1.3px),radial-gradient(circle at center,#ffd9c5 0 1px,transparent 1.4px);
+  background-position:37px 53px,23px 4px;
+  background-size:137px 131px,251px 187px;
+  mask-image:linear-gradient(transparent 1%,#000 48%,transparent);
+}
+.island-layout{
+  display:grid;
+  align-content:center;
+  justify-items:center;
+  min-height:100svh;
+  gap:clamp(.75rem,2.2vh,1.5rem);
+  padding:clamp(1.75rem,5vh,3.75rem) 1rem 1.75rem;
+}
+#island-title{
+  font:400 clamp(2rem,4.35vw,4.25rem)/1.18 "Songti SC","STSong","SimSun",serif;
+  letter-spacing:-.045em;
+  color:#fff1eb;
+  text-align:center;
+  margin:0;
+  outline:none;
+}
+.island-viewport{
+  position:relative;
+  width:min(100%,max(38rem,calc((100svh - 10.25rem) * 1.28533)),76rem);
+  aspect-ratio:964/750;
+  overflow:hidden;
+  background:url('assets/island-overview.png?v=33.0') center/100% 100% no-repeat;
+}
+.island-viewport.is-ready{background-image:none}
+.island-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  touch-action:none;
+  cursor:grab;
+  visibility:hidden;
+  outline:none;
+}
+.island-viewport.is-ready .island-canvas{visibility:visible}
+.island-canvas.is-dragging{cursor:grabbing}
+.island-canvas.is-picking{cursor:pointer}
+.island-canvas:focus-visible{outline:1px dashed #ffbfd1;outline-offset:-5px}
+.island-labels{position:absolute;inset:0;pointer-events:none}
+.island-labels a{
+  position:absolute;
+  pointer-events:auto;
+  display:block;
+  left:var(--hit-x);
+  top:var(--hit-y);
+  width:var(--hit-w);
+  height:var(--hit-h);
+  overflow:hidden;
+  color:transparent;
+}
+.island-labels [data-island="education"]{--hit-x:7%;--hit-y:14%;--hit-w:24%;--hit-h:33%}
+.island-labels [data-island="academic"]{--hit-x:36%;--hit-y:7%;--hit-w:26%;--hit-h:33%}
+.island-labels [data-island="internships"]{--hit-x:66%;--hit-y:15%;--hit-w:27%;--hit-h:33%}
+.island-labels [data-island="skills"]{--hit-x:2%;--hit-y:47%;--hit-w:24%;--hit-h:29%}
+.island-labels [data-island="life"]{--hit-x:26%;--hit-y:65%;--hit-w:27%;--hit-h:29%}
+.island-labels [data-island="contact"]{--hit-x:67%;--hit-y:54%;--hit-w:27%;--hit-h:28%}
+.island-viewport.is-ready .island-labels a{
+  pointer-events:none;
+  left:var(--projected-x);
+  top:var(--projected-y);
+  transform:translate(-50%,-50%);
+  width:var(--projected-w);
+  height:var(--projected-h);
+  white-space:nowrap;
+  border-radius:.1875rem;
+}
+.island-home :is(button,a):focus-visible{outline:2px solid #ffc2d4;outline-offset:4px}
+.island-home .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.island-reset{
+  position:absolute;
+  right:.5rem;
+  bottom:.35rem;
+  display:grid;
+  place-items:center;
+  width:2.75rem;
+  height:2.75rem;
+  padding:0;
+  border:1px solid #e4aed378;
+  border-radius:50%;
+  color:#fff1eb;
+  background:#222038ed;
+  font-size:1.4rem;
+}
+.island-reset[hidden]{display:none}
+@media(max-width:740px){
+  .island-layout{padding:2.5rem .25rem 4.75rem;gap:1.125rem}
+  .island-viewport{width:100%}
+  .island-reset{right:.25rem}
+}

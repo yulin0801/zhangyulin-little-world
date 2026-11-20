@@ -1,0 +1,62 @@
+.journey-page{max-width:1440px;padding-bottom:65px;color:#34252e}
+.journey-heading{display:flex;align-items:end;justify-content:space-between;gap:25px;margin:6px 0 0}
+.journey-heading h1{font-family:"Songti SC","STSong","SimSun",serif;font-size:clamp(36px,4.2vw,58px);font-weight:400;line-height:1.3;margin:0;letter-spacing:-.04em}
+.journey-heading .profile-eyebrow{margin-bottom:10px;color:#90536d}
+.journey-range{display:flex;align-items:center;gap:15px;color:#9a4c71;font:16px Georgia,serif;padding-bottom:8px}
+.journey-range i{width:75px;height:2px;background:#f2773e}
+.journey-replay{width:37px;height:37px;border:1px solid #e895ba;border-radius:50%;background:#fff0f7;color:#7c3658;font-size:23px;margin-left:5px;cursor:pointer;transition:transform .5s,background .2s}
+.journey-replay:hover{transform:rotate(-35deg);background:#f4b5d4}
+.education-journey{position:relative;isolation:isolate;margin-top:35px}
+.journey-route{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:-1}
+.journey-route path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.journey-ribbon{stroke:#f4b5d4;stroke-width:32;opacity:.75}
+.journey-track{stroke:#ec8db8;stroke-width:1.5}
+.journey-flow{stroke:#fff7fb;stroke-width:2;stroke-dasharray:3 17;animation:journey-stream 18s linear infinite;opacity:.95}
+.journey-progress{stroke:url(#journey-ink);stroke-width:3}
+.traveler-halo{fill:#f2773e;opacity:.2;animation:journey-pulse 2.5s ease-in-out infinite}
+.traveler-core{fill:#e86b36;stroke:#fff7fb;stroke-width:2}
+/* The first and third schools sit above the shared wave; the others sit below. */
+.journey-page .journey-stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto 80px auto;gap:16px 24px;align-items:start;position:relative}
+.journey-page .learning-stop{display:contents;padding:0;background:none;border:0;border-radius:0;overflow:visible}
+.journey-school-card,.journey-marker{grid-column:calc(var(--step) + 1)}
+.journey-stop-above .journey-school-card{grid-row:1;align-self:end}
+.journey-stop-below .journey-school-card{grid-row:3;align-self:start}
+.journey-marker{grid-row:2;display:flex;align-items:center;flex-direction:column;gap:0;margin:0 auto;background:none;border:0;padding:0;color:#a43868;cursor:pointer;position:relative;z-index:1}
+.journey-stop-above .journey-marker{align-self:start}
+.journey-stop-below .journey-marker{align-self:end}
+.journey-year{font:38px/1 Georgia,serif;letter-spacing:-.045em;transition:color .4s,transform .4s}
+.journey-city{font-size:11px;letter-spacing:.2em;margin:8px 0 14px;line-height:1.5;color:#90536d}
+.journey-pin{display:block;width:14px;height:14px;box-sizing:border-box;border:3px solid #fff0f7;border-radius:50%;background:#eb6da6;box-shadow:0 0 0 1px #d95b94;transition:box-shadow .4s,background .4s}
+.journey-stop-below .journey-pin{order:-1;margin-bottom:14px}
+.journey-stop-below .journey-city{margin-bottom:0}
+.journey-marker:hover .journey-year,.journey-marker[aria-pressed=true] .journey-year{color:#c34c26;transform:translateY(-3px)}
+.journey-marker[aria-pressed=true] .journey-pin{background:#f2773e;box-shadow:0 0 0 6px #f2773e24,0 0 0 1px #dd602b}
+.journey-school-card{background:#fffafd;border:1px solid #ed9fc1;border-radius:13px;overflow:hidden;box-shadow:0 7px 0 #efaccb48;transition:transform .6s cubic-bezier(.2,.8,.2,1),border-color .5s,box-shadow .5s}
+.journey-page .school-visual{height:116px;min-height:0;padding:14px;background:#fff;border-bottom:1px solid #f3c6da;justify-content:center}
+.journey-page .school-emblem{width:86px;height:86px}
+.journey-page .school-emblem--mcu{transform:scale(1.18)}
+.journey-page .school-detail{padding:18px 18px 20px}
+.journey-page .school-detail h2{font-family:"Songti SC","STSong","SimSun",serif;font-size:21px;line-height:1.6;margin:7px 0;color:#34252e}
+.journey-page .school-period{font-size:10px;letter-spacing:.02em;color:#8d526c}
+.journey-page .school-department{font-size:11px;line-height:1.9;margin:0 0 11px;min-height:0;color:#7e4d62}
+.journey-page .school-status{font-size:10px;background:#fbd7e9;color:#75334f;padding:5px 10px}
+.journey-page .school-academic-record{margin-top:12px}
+.journey-page .school-grade-summary{font-size:11px;color:#7e4d62}
+.journey-page .school-record-link{font-size:10px;border-bottom-color:#e591b7;color:#75334f}
+.journey-page .is-current .journey-school-card{transform:translateY(-5px);border-color:#e76b36;box-shadow:0 8px 0 #f2773e20,0 12px 30px #be456a10}
+.journey-page .journey-school-card:hover{transform:translateY(-7px);box-shadow:0 9px 0 #f2773e20,0 15px 30px #be456a14}
+.journey-ready .journey-school-card{animation:journey-arrive 1s both;animation-delay:calc(var(--step)*.18s)}
+.journey-marker:focus-visible,.journey-replay:focus-visible{outline:2px solid #c34c26;outline-offset:7px}
+@keyframes journey-arrive{from{opacity:0;translate:0 24px}to{opacity:1;translate:0 0}}
+@keyframes journey-stream{to{stroke-dashoffset:-200}}
+@keyframes journey-pulse{50%{r:22;opacity:.05}}
+@media(min-width:901px) and (max-width:1100px){.journey-page{padding-left:4%;padding-right:4%}.journey-page .journey-stops{column-gap:16px}.journey-page .school-detail{padding:16px 12px}.journey-page .school-detail h2{font-size:18px}.journey-page .school-grade-summary{font-size:10px;white-space:normal}.journey-page .school-visual{height:108px}.journey-page .school-emblem{width:80px;height:80px}}
+@media(max-width:900px){
+ .journey-page{padding-bottom:40px}.journey-heading{align-items:start;flex-direction:column;gap:20px}.journey-heading h1{font-size:37px}.journey-range{font-size:13px;gap:12px}.journey-range i{width:54px}.journey-replay{width:32px;height:32px;font-size:20px}.education-journey{margin-top:28px}
+ .journey-page .journey-stops{display:grid;grid-template-columns:1fr;grid-template-rows:none;gap:32px;padding-left:38px}.journey-page .learning-stop{display:block;padding:0}
+ .journey-marker{margin:0 0 21px -37px;flex-direction:row;gap:15px;width:calc(100% + 37px);padding-left:5px}.journey-year{font-size:36px;order:1}.journey-city,.journey-stop-below .journey-city{order:2;margin:0;font-size:10px;letter-spacing:.1em}.journey-pin,.journey-stop-below .journey-pin{order:0;flex-shrink:0;margin:0}
+ .journey-school-card{display:grid;grid-template-columns:76px minmax(0,1fr);border-radius:10px;max-width:560px}.journey-stop-below .journey-school-card{margin-left:12px}
+ .journey-page .school-visual{height:100%;padding:14px 7px;border-bottom:0;border-right:1px solid #f3c6da}.journey-page .school-emblem{width:59px;height:59px}.journey-page .school-detail{padding:18px 12px 21px}.journey-page .school-detail h2{font-size:20px;margin:7px 0}.journey-page .school-period{font-size:10px}.journey-page .school-department{font-size:11px}.journey-page .school-status{font-size:9px}.journey-page .school-grade-summary{font-size:10px;white-space:normal}.journey-page .school-record-links{gap:0 15px}.journey-page .is-current .journey-school-card{transform:translateY(-3px)}.journey-ribbon{stroke-width:18}
+}
+@media(max-width:370px){.journey-page .journey-stops{padding-left:29px}.journey-marker{margin-left:-28px;width:calc(100% + 28px);gap:12px}.journey-school-card{grid-template-columns:62px minmax(0,1fr)}.journey-page .school-emblem{width:48px;height:48px}.journey-page .school-detail h2{font-size:18px}.journey-stop-below .journey-school-card{margin-left:6px}}
+@media(prefers-reduced-motion:reduce){.journey-page *, .journey-route *{animation:none!important;transition:none!important}.journey-page .journey-school-card{opacity:1;translate:none}.journey-traveler{display:none}}

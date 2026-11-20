@@ -1,0 +1,174 @@
+.contact-lanyard-page {
+  min-height: calc(100svh - 88px);
+  padding: 0 0 clamp(1.25rem,5vh,3.25rem);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 38%, #4c355358, transparent 62%),
+    radial-gradient(circle, #e8bedc26 0 1px, transparent 1.25px) 50% 0 / 22px 22px,
+    #16172e;
+  color: #fff0ec;
+}
+.contact-lanyard-stage {
+  --lanyard-drop: clamp(8.2rem,23svh,14rem);
+  position: relative;
+  height: clamp(27rem,62svh,37rem);
+  min-height: calc(var(--lanyard-drop) + 15.8rem);
+  overflow: hidden;
+}
+.lanyard-rest { position: absolute; top: var(--lanyard-drop); width: 0; height: 0; pointer-events: none; }
+.lanyard-rope {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(1px 3px 3px #130d25b0);
+}
+.lanyard-rope g[class^="lanyard-cord"] { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.lanyard-cord-shadow { stroke: #4b304d; stroke-width: 10px; }
+.lanyard-cord-color { stroke: #cf8faa; stroke-width: 7.9px; }
+.lanyard-cord-texture { stroke: #f8d2d9; stroke-opacity: .45; stroke-width: 5.65px; stroke-dasharray: 1 3; }
+.lanyard-badge {
+  --badge-x: 50%;
+  --badge-y: var(--lanyard-drop);
+  --badge-angle: -5deg;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: min(28rem,calc(100% - 2.75rem));
+  margin: 0;
+  border: 1px solid #e4bed1;
+  border-radius: 15px;
+  background: linear-gradient(136deg,#fff8f4 8%,#f7e9eb 68%,#f0d5df 100%);
+  color: #352237;
+  box-shadow: 2px 3px 0 #a07b9c,3px 6px 0 #382b4c,0 27px 35px #0e0c2478,inset 0 1px 1px #fff;
+  transform: translate3d(calc(var(--badge-x) - 50%),var(--badge-y),0) rotateZ(var(--badge-angle));
+  transform-origin: 50% 0;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.lanyard-badge a { cursor: pointer; }
+.is-dragging .lanyard-badge, .is-dragging .lanyard-grip { cursor: grabbing; }
+.lanyard-grip {
+  position: absolute;
+  z-index: 3;
+  top: -1px;
+  left: 50%;
+  display: grid;
+  place-items: start center;
+  width: 66px;
+  height: 34px;
+  transform: translateX(-50%);
+  padding: 8px 0 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+}
+.lanyard-grip span {
+  width: 16px;
+  height: 12px;
+  border-radius: 6px;
+  background: #241c38;
+  border: 1px solid #cfadc4;
+  box-shadow: inset 1px 2px 1px #6f506c,0 0 0 1px #91718d7a;
+}
+.lanyard-badge-main {
+  display: grid;
+  grid-template-columns: minmax(0,.91fr) minmax(0,1.3fr);
+  align-items: stretch;
+  gap: clamp(.73rem,2vw,1.3rem);
+  padding: 2.05rem 1.27rem 1.27rem;
+}
+.lanyard-portrait {
+  overflow: hidden;
+  position: relative;
+  justify-self: end;
+  width: min(100%,8.5rem);
+  aspect-ratio: 5/7;
+  margin: 0;
+  border: 1px solid #9d7c9a;
+  border-radius: 7px;
+  background: #9ab7d8;
+  box-shadow: 0 2px 4px #6837572a,inset 0 0 0 1px #fff4;
+}
+.lanyard-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lanyard-details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: .4rem 0;
+  gap: .6rem;
+  padding: .35rem 0 .05rem clamp(.7rem,2.3vw,1.3rem);
+  border-left: 1px dashed #b980a3;
+}
+.lanyard-identity h1 {
+  margin: 0;
+  font: 500 clamp(2rem,4.1vw,3.55rem)/1.04 "Kaiti SC",STKaiti,KaiTi,"Songti SC",SimSun,serif;
+  letter-spacing: .01em;
+  color: #382438;
+}
+.lanyard-identity h1:focus { outline: none; }
+.lanyard-identity p {
+  margin: .35rem 0 0;
+  color: #775370;
+  font: italic clamp(.75rem,2.9vw,1rem)/1.45 Georgia,"Times New Roman",serif;
+  letter-spacing: .04em;
+}
+.lanyard-tel { display: grid; gap: .23rem; }
+.lanyard-tel span { color: #744f6e; font-size: .73rem; letter-spacing: .08em; }
+.lanyard-tel a {
+  justify-self: start;
+  color: #3b2941;
+  font: 500 clamp(.75rem,3vw,1.12rem)/1.45 system-ui,sans-serif;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  letter-spacing: .015em;
+}
+.lanyard-tel a:hover { text-decoration: underline; text-underline-offset: .25em; }
+.lanyard-contact-actions {
+  position: relative;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 .9rem;
+  display: grid;
+  justify-items: center;
+  gap: 1.05rem;
+  text-align: center;
+}
+.lanyard-email { color: #f7dfe8; font-size: clamp(.85rem,2.8vw,1.05rem); letter-spacing: .015em; overflow-wrap: anywhere; }
+.lanyard-email:hover { text-decoration: underline; text-underline-offset: .27em; }
+.lanyard-buttons { display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; }
+.lanyard-buttons :is(button,a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid #b985a5;
+  border-radius: 6px;
+  padding: .43rem 1rem;
+  font-size: .88rem;
+}
+.lanyard-copy { background: #efbecf; border-color: #efbecf; color: #352236; font-weight: 500; }
+.lanyard-copy:hover { background: #ffdae4; }
+.lanyard-copy:disabled { opacity: .7; cursor: wait; }
+.lanyard-resume { background: #2b263f; color: #f7dce8; }
+.lanyard-resume:hover { background: #45314d; }
+.lanyard-status { min-height: 1.15rem; margin: -.5rem 0 0; color: #e7b3cb; font-size: .75rem; }
+.lanyard-sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+@media(max-width: 850px) {
+  .contact-lanyard-page { min-height: calc(100svh - 74px); }
+}
+@media(max-width: 600px) {
+  .contact-lanyard-stage { --lanyard-drop: clamp(7.4rem,17svh,9.4rem); height: clamp(22rem,48svh,27rem); min-height: calc(var(--lanyard-drop) + 12.25rem); }
+  .lanyard-badge-main { padding: 1.8rem .9rem 1rem; }
+  .lanyard-details { padding-top: 0; }
+  .lanyard-buttons :is(button,a) { padding-inline: .83rem; }
+}

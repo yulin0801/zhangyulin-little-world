@@ -1,0 +1,58 @@
+/* Load after styles.css and the current site stylesheet. */
+.intro {
+  background: #f5dbe6;
+  opacity: 1;
+  isolation: isolate;
+}
+.intro[data-phase="writing"],
+.intro[data-phase="leaving"] { background: #fff8f3; }
+.intro #paper-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.welcome-writing {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: none;
+}
+.welcome-writing[hidden] { display: none !important; }
+.welcome-writing svg {
+  display: block;
+  width: min(64vw, 680px);
+  height: auto;
+  overflow: visible;
+  transform: translateY(-2vh) rotate(-2deg);
+}
+.welcome-ink {
+  fill: none;
+  stroke: #744356;
+  stroke-width: 3.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.intro .intro-skip {
+  z-index: 2;
+  min-height: 44px;
+  color: #744356;
+  border-color: #a27d8e;
+}
+.intro.leaving {
+  opacity: 0;
+  transition: opacity 480ms cubic-bezier(.2,.65,.3,1);
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .welcome-writing { padding: 18px; }
+  .welcome-writing svg { width: 88vw; max-width: 560px; }
+  .welcome-ink { stroke-width: 3.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro.leaving { transition: none; }
+}

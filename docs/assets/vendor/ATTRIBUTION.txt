@@ -1,0 +1,20 @@
+Travel UI design and adapted algorithms
+
+Reference: https://github.com/kaipengfang/travel-shots
+Copyright (c) 2026 途影 (TravelShots), MIT License.
+The complete license is preserved in TRAVELSHOTS-LICENSE.txt.
+
+Adapted patterns: duplicated photo-river groups, hover/focus/reduced-motion
+pause behaviour, shortest-column masonry allocation, full-photo viewer,
+and a destination globe with photo markers and a list fallback.
+Reference source files read: src/components/PhotoRiver.tsx,
+PhotoGallery.tsx, PhotoLightbox.tsx, GlobeMap.tsx.
+
+travel-world.js is converted from public/maps/world.json in that repository
+(Natural Earth world geometry). Only geographic outer-ring coordinates are
+retained. The orthographic Canvas renderer is a new static implementation;
+MapLibre, external map tiles, analytics, likes and EXIF UI are not included.
+
+Destination labels preserve the user's source folder names. Coordinate pairs
+are approximate destination centres used only to place schematic markers;
+they are not inferred or extracted photo locations.

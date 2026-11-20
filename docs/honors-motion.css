@@ -1,0 +1,39 @@
+.academic-awards .awards-heading{display:flex;align-items:baseline;gap:18px;margin-bottom:22px}
+.academic-awards header.awards-heading h1{font-size:clamp(38px,4.4vw,58px);color:#34252e;margin:0}
+.academic-awards .awards-heading .page-label{margin:0}
+.honor-wall{position:relative;margin:0 0 65px;padding:28px 30px 0;background:#f4b5d4;border:9px solid #f9d7e8;border-radius:4px;box-shadow:inset 0 0 0 1px #dc94b5,inset 0 8px 25px #ab496a12,0 8px 0 #edb4d0;color:#34252e;isolation:isolate}
+.honor-wall::before{content:"";position:absolute;inset:1px;background:repeating-linear-gradient(90deg,transparent 0 12.4%,#fff3 12.45% 12.5%);z-index:-1;pointer-events:none}
+.honor-wall-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 20px}
+.honor-wall-piece{position:relative;display:flex;flex-direction:column;align-items:center;min-width:0;padding:0 7px 4px;border:0;background:none;color:inherit;font:inherit;text-align:center;cursor:zoom-in;isolation:isolate}
+.honor-wall-landscape{grid-column:span 2}
+.honor-wall-piece::after{content:"";position:absolute;top:145px;left:-10px;right:-10px;height:8px;background:#ffe8d6;border:1px solid #e7a985;border-bottom:3px solid #efb79a;box-shadow:0 5px 7px #91315420;z-index:-1;pointer-events:none}
+.honor-wall-mat{display:block;position:relative;width:107px;height:145px;padding:5px;background:#fff9f2;border:1px solid #dca184;box-shadow:2px 2px 0 #e8ad8c,4px 7px 11px #85324b26;transform-origin:50% 95%;transition:transform .25s ease,box-shadow .25s ease}
+.honor-wall-landscape .honor-wall-mat{width:218px}
+.honor-wall-mat img{display:block;width:100%;height:100%;object-fit:contain;background:#fff;pointer-events:none}
+.honor-wall-zoom{position:absolute;right:8px;bottom:8px;display:grid;place-items:center;width:24px;height:24px;background:#fff4f9f2;border:1px solid #e796bc;border-radius:50%;font-size:13px;opacity:0;transition:opacity .2s}
+.honor-wall-label{display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:18px;line-height:1.5;max-width:100%}
+.honor-wall-label>span{font-size:9px;font-variant-numeric:tabular-nums;color:#76435b}
+.honor-wall-label strong{font-size:11px;font-weight:500;overflow-wrap:anywhere}
+.honor-wall-piece:hover .honor-wall-mat,.honor-wall-piece:focus-visible .honor-wall-mat{transform:translateY(-5px) scale(1.06);box-shadow:3px 3px 0 #e8ad8c,6px 12px 16px #85324b32}
+.honor-wall-piece:hover .honor-wall-zoom,.honor-wall-piece:focus-visible .honor-wall-zoom{opacity:1}
+.honor-wall-piece:focus-visible{outline:2px solid #943654;outline-offset:5px;border-radius:2px}
+.honor-wall-help{display:block;text-align:right;font-size:10px;color:#744055;letter-spacing:.03em;margin:15px 0 0;padding:13px 0;border-top:1px solid #dd8eb56b}
+.academic-awards .certificate-frame{background:#fff0f7;border-color:#edbdd3;box-shadow:0 7px 22px #8d3c5510;transition:transform .35s,box-shadow .35s}
+.academic-awards .certificate-card:hover .certificate-frame{background:#ffe0ed;transform:translateY(-5px);box-shadow:0 16px 30px #8d3c5524}
+.academic-awards .certificate-open{background:#fff7fb;border-color:#ed9fc5;color:#5b3245}
+.academic-awards .award-project{transition:transform .35s,box-shadow .35s}
+.academic-awards .award-project:hover,.academic-awards .award-project:focus-within{transform:translateY(-4px);box-shadow:0 15px 25px #8d3c5514}
+.academic-awards .award-section-heading{position:relative}
+.academic-awards .award-section-heading::after{content:"";position:absolute;bottom:-8px;left:0;width:48px;height:2px;background:#f2773e;transform:scaleX(.25);transform-origin:left;transition:transform .8s}
+.academic-awards .award-section-heading.honors-in-view::after{transform:scaleX(1)}
+@media(max-width:720px){
+ .academic-awards .awards-heading{gap:12px;margin-bottom:18px}.academic-awards header.awards-heading h1{font-size:38px}.academic-awards .awards-heading .page-label{font-size:9px}
+ .honor-wall{padding:17px 11px 0;border-width:6px;margin-bottom:42px;box-shadow:inset 0 0 0 1px #dc94b5,0 6px 0 #edb4d0}
+ .honor-wall-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:19px 10px}
+ .honor-wall-landscape{grid-column:1/-1}
+ .honor-wall-piece{padding:0 1px 2px}.honor-wall-piece::after{top:104px;left:-5px;right:-5px;height:6px}
+ .honor-wall-mat{width:76px;max-width:100%;height:104px;padding:4px}.honor-wall-landscape .honor-wall-mat{width:158px}
+ .honor-wall-label{padding-top:13px;gap:3px}.honor-wall-label strong{font-size:9px}.honor-wall-label>span{font-size:8px}
+ .honor-wall-help{font-size:9px;padding:10px 0;margin-top:12px}.honor-wall-zoom{width:20px;height:20px;right:6px;bottom:6px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.honor-wall-mat,.honor-wall-zoom,.academic-awards .certificate-frame,.academic-awards .award-project,.academic-awards .award-section-heading::after{transition:none!important}}

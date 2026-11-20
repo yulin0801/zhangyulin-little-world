@@ -1,0 +1,92 @@
+/* The original reference: strawberry pink, pale pink paper, orange accents. */
+:root{--pink:#f4b5d4;--paper:#fff0f7;--ink:#34252e;--muted:#765260;--line:#e6a7c4;--accent:#ac285d;--orange:#f2773e;--pink-soft:#fbd4e8;--pink-white:#fffafd;background:var(--paper);color:var(--ink)}
+body{background:var(--paper)}
+::selection{background:#f2773e;color:#291e24}
+.site-header{background:#f4b5d4;border-bottom:1px solid #dd8bb3;backdrop-filter:none}
+.site-header .wordmark>span,.site-header .nav-label,.site-header .nav-toggle{color:var(--ink)}
+.site-header:after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,#f2773e 0 16px,#f4b5d4 16px 32px);pointer-events:none}
+.site-header .nav-dropdown{background:#fff5fa;border-color:var(--line);box-shadow:0 12px 25px #a32c5b15}
+.site-header .nav-dropdown a:hover{background:#fbd4e8;color:var(--ink)}
+@media(min-width:851px){
+ .site-header nav{height:100%}
+ .site-header .nav-group{height:100%}
+ .site-header .nav-dropdown{top:calc(100% + 12px);z-index:2}
+ .site-header .nav-dropdown::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+}
+@media(max-width:850px){
+ .site-header nav{top:calc(100% + 10px);max-height:calc(100dvh - 84px)}
+}
+.site-header nav a[aria-current=page]:after{background:#c13764}
+.identity-home.hero{background:#f4b5d4;color:var(--ink)}
+.identity-home.hero:after{opacity:.02}
+.identity-halo{background:#ffe4f0;filter:none;opacity:.9}
+.identity-heading h1 span,.identity-hi{color:#a12351}
+.identity-heading p,.identity-footer{color:#633044}
+.identity-orbit .orbit-lines{stroke:#b6356838}
+.identity-bubble{color:#422230;border-color:#fff3f9;box-shadow:inset 0 3px 10px #fff7,0 9px 20px #af38631a}
+.identity-bubble .bubble-arrow{color:#923052}
+.bubble-research{--bubble:#fff4fa}.bubble-practice{--bubble:#ffad83}.bubble-education{--bubble:#fbd9eb}.bubble-skills{--bubble:#ffcfb8}.bubble-life{--bubble:#ef8dbb}.bubble-contact{--bubble:#fff2f9}
+.identity-home .castle,.identity-home .firework-button{color:#b33362;opacity:.65}
+.identity-bubble:hover,.identity-bubble:focus-visible{color:#291c23;box-shadow:inset 0 3px 12px #fff8,0 16px 32px #af386326}
+.intro{background:#f4b5d4}.intro[data-phase=writing],.intro[data-phase=leaving]{background:#fff0f7}
+.intro .intro-skip{color:#6a2845;border-color:#ba507d}
+.academic-hub-heading h1>span,.academic-portal-index b{color:#ba285e}
+.portfolio-papers{background:#f4b5d4}.honors-composition{background:#ffd0b5;color:#9c3d27}
+.portal-art-label,.paper-note,.honor-art-caption{color:#643347}
+.honor-orbit{color:#bb4a32}.academic-portal-arrow{border-color:#d1729c;background:#fff4fa}
+.academic-portal:hover .academic-portal-arrow{background:#f2773e;color:#34252e}
+.academic-section-tabs a[aria-current=page]:after{background:#c13764}
+.work-open,.award-year,.award-project-tag,.card-kind{color:#a32958}
+.card-kind{border-color:#e2a0bf;background:#ffe2ef}
+.catalogue-grid .card-image,.works-library .document-preview,.works-library .document-preview.tone-sage,.works-library .document-preview.tone-peach,.works-library .document-preview.tone-cream{background:#f9c8e0}
+.title-sheet,.title-sheet.tone-sage,.title-sheet.tone-peach,.title-sheet.tone-cream{background:#fbd4e8}
+.award-result{background:#f4b5d4;color:#5d273e}
+.award-project{background:#fff9fc;border-color:#e6a7c4}.award-project:hover{background:#fff}
+.award-project-image{background:#fbd4e8}.award-section-heading>span{color:#765260}
+.academic-awards .certificate-frame,.certificate-frame,.language-certificate-grid .certificate-frame{background:#f9d2e6;border-color:#e5a6c3}
+.academic-awards .certificate-card:hover .certificate-frame,.certificate-card:hover .certificate-frame{background:#f5b6d5;border-color:#c65c8d}
+.certificate-open{background:#fff5fa;border-color:#dc95b6;color:#51273b}
+.reader-toolbar{background:#f9d0e4}.reader-pages{background:#f4d5e3;border-color:#e6a7c4}
+.reader-page{background:#fff}.document-tabs button[aria-pressed=true],.reader-toolbar button[aria-pressed=true]{background:#efaccc;color:#442332}
+.school-status,.tone-lilac .school-status,.tone-mint .school-status,.tone-blue .school-status{background:#fbd4e8;color:#742b49}
+.skills-page .skill-panel{background:#f9cee3;border-color:#e6a7c4}
+.skills-page .tools-skill{background:#f4b5d4}.skills-page .tool-list li{background:#fff2f8;border-color:#e5a1c0}
+.skills-page .language-skills{background:#f4b5d4}.language-skills dt{color:#633044}
+.skills-page .practice-skills{border-color:#e6a7c4}.skills-page .practice-role{color:#a32958}
+.internship-page{--internship-ink:#34252e;--internship-muted:#765260;--internship-line:#e6a7c4;--internship-accent:#ac285d;background:#fff0f7}
+.internship-timeline:before{background:#e17ba7}
+.internship-timeline-point,.internship-point-current{background:#f4b5d4;color:#732540;border-color:#cb5989;box-shadow:0 0 0 8px #fff0f7}
+.internship-story,.internship-story-cream,.internship-story-mint,.internship-story-lilac{background:#fffafd;border-color:#eab4ce}
+.internship-evidence{background:#fbd4e8;border-color:#eab4ce}
+.internship-story-copy p,.internship-work-page{color:#654450}
+.internship-metrics dt,.internship-story-mint .internship-metrics dt{color:#ad285c}
+.internship-date,.internship-page-footer>a{color:#8a3658}
+.internship-role,.internship-story-mint .internship-role,.internship-story-lilac .internship-role{border-color:#f2773e}
+.internship-craft-tags>span{background:#ffe7f2;color:#803550;border-color:#e4a2c0}
+.internship-film-link{background:#f2773e;color:#35222a}
+.internship-current-badge{background:#fbd4e8;color:#8b2850;border-color:#d7739e}
+.career-track{background:#f8c6df;border-color:#dc96b6}.career-track.is-docked{background:#f8c6dff5}
+.career-track-caption,.career-total,.career-stop-copy small{color:#79324f}
+.career-stop-dot,.career-stops button[aria-current] .career-stop-dot{background:#f2773e;color:#34252e;border-color:#e06a32}
+.career-stops button[aria-current] .career-stop-copy strong{color:#852349}
+.career-track-progress{background:#edabca}.career-track-progress>span{background:#c13764}
+.manuscript-card{background:#ffe8f3;border-color:#df9dbb}.manuscript-card.is-active,.manuscript-card.is-pinned{background:#fffafd}
+.manuscript-card-content,.manuscript-excerpt{background:#fffafd}
+.manuscript-number,.manuscript-category,.manuscript-card-mark{color:#a32958}
+.travel-globe-stage:before{background:radial-gradient(ellipse,#f4b5d485,transparent 65%)}
+.travel-globe-marker{background:#fff5fa;color:#5c2c42;border-color:#da93b5}
+.travel-photo,.travel-river-photo{background:#f9c8e0}
+.travel-destinations nav{scrollbar-color:#cf6896 transparent}
+.travel-album-groups,.travel-album-filter,.travel-album-filters{border-color:#e6a7c4}
+.collection-button{background:#f2773e;color:#34252e;border-color:#e96830}
+.campus-practice{margin:54px 0 0;border-top:2px solid #e5a6c3;padding-top:24px}
+.campus-practice-heading{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:20px}
+.campus-practice-heading h2{font-size:22px;font-weight:500;margin:0}.campus-practice-heading>span{color:var(--muted);font-size:10px;letter-spacing:.1em}
+.campus-practice-records{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.campus-practice article{padding:23px 26px;background:#fbd4e8;border-radius:5px;border:1px solid #e6a7c4;position:relative;overflow:hidden}
+.campus-practice article:after{content:"";position:absolute;right:-19px;top:-19px;width:56px;height:56px;border:1px solid #db8fb2;border-radius:50%;pointer-events:none}
+.campus-practice .campus-period{font-size:11px;color:#88405e;line-height:1.8}
+.campus-practice h3{font-size:18px;font-weight:500;margin:12px 0 7px;line-height:1.6}
+.campus-practice p{font-size:13px;margin:0;line-height:1.8;color:#654450}
+@media(max-width:850px){.site-header nav{background:#fff0f7}.site-header .nav-dropdown{background:transparent;box-shadow:none}.site-header nav>.nav-label,.site-header nav>.nav-group,.site-header nav .nav-dropdown a{border-color:#e7b0ca}}
+@media(max-width:650px){.campus-practice-records{grid-template-columns:1fr;gap:13px}.campus-practice-heading h2{font-size:20px}.campus-practice article{padding:21px}.campus-practice-heading>span{font-size:8px}.campus-practice{margin-top:34px}}
