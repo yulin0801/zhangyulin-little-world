@@ -1,58 +1,142 @@
-/* Load after styles.css and the current site stylesheet. */
-.intro {
-  background: #f5dbe6;
-  opacity: 1;
+.intro.thread-intro[data-phase] {
+  --thread-ink: #f0a9c0;
+  --thread-paper: #18192f;
   isolation: isolate;
+  background:
+    radial-gradient(ellipse at 28% 47%, #412d49 0%, #23223c 38%, transparent 68%),
+    var(--thread-paper);
+  color: #fff0eb;
+  will-change: transform;
 }
-.intro[data-phase="writing"],
-.intro[data-phase="leaving"] { background: #fff8f3; }
-.intro #paper-canvas {
+.thread-intro.is-sliding {
+  transform: translateY(-100%);
+  transition: transform 820ms cubic-bezier(.72, 0, .24, 1);
+}
+.thread-intro .thread-bridge {
   position: absolute;
   inset: 0;
-  z-index: 0;
   width: 100%;
   height: 100%;
-}
-.welcome-writing {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  padding: 24px;
   pointer-events: none;
 }
-.welcome-writing[hidden] { display: none !important; }
-.welcome-writing svg {
-  display: block;
-  width: min(64vw, 680px);
-  height: auto;
-  overflow: visible;
-  transform: translateY(-2vh) rotate(-2deg);
-}
-.welcome-ink {
+.thread-intro path {
   fill: none;
-  stroke: #744356;
-  stroke-width: 3.15;
+  stroke: var(--thread-ink);
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
-.intro .intro-skip {
-  z-index: 2;
-  min-height: 44px;
-  color: #744356;
-  border-color: #a27d8e;
+.thread-intro [data-thread-entry],
+.thread-intro [data-thread-exit],
+.thread-intro [data-portrait-main],
+.thread-intro [data-portrait-detail] {
+  visibility: hidden;
 }
-.intro.leaving {
+.thread-bridge-tail {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: calc(50% - 1px);
+  width: 2px;
+  height: min(28svh, 13rem);
+  background: linear-gradient(var(--thread-ink) 12%, transparent 94%);
   opacity: 0;
-  transition: opacity 480ms cubic-bezier(.2,.65,.3,1);
   pointer-events: none;
 }
-@media (max-width: 720px) {
-  .welcome-writing { padding: 18px; }
-  .welcome-writing svg { width: 88vw; max-width: 560px; }
-  .welcome-ink { stroke-width: 3.6; }
+.thread-intro.is-sliding .thread-bridge-tail {
+  animation: thread-tail 820ms ease both;
+}
+@keyframes thread-tail {
+  0% { opacity: 1; }
+  40% { opacity: .8; }
+  100% { opacity: 0; }
+}
+.thread-main {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1fr);
+  gap: clamp(1.6rem, 4.8vw, 5rem);
+  align-items: center;
+  width: min(86%, 64rem);
+  height: 100%;
+  margin-inline: auto;
+  pointer-events: none;
+}
+.thread-portrait {
+  display: block;
+  width: min(100%, 69svh, 28rem);
+  height: auto;
+  overflow: visible;
+  justify-self: center;
+}
+.thread-copy {
+  align-self: center;
+  padding-bottom: .4rem;
+}
+.thread-copy h1 {
+  margin: 0;
+  font: 400 clamp(2.75rem, 5.85vw, 5.45rem)/1.17 Georgia, "Songti SC", "STSong", "SimSun", serif;
+  letter-spacing: -.065em;
+  white-space: nowrap;
+}
+.thread-copy h1 [lang="en"] {
+  font-style: italic;
+  letter-spacing: -.06em;
+}
+.thread-copy p {
+  margin: clamp(.65rem, 2vw, 1.3rem) 0 0;
+  color: #f2b5c7;
+  font: 400 clamp(1.18rem, 2.25vw, 1.86rem)/1.55 "Songti SC", "STSong", "SimSun", serif;
+  letter-spacing: .09em;
+}
+.thread-copy > * {
+  opacity: 0;
+  transform: translateY(.6rem);
+  transition: opacity 460ms ease, transform 560ms cubic-bezier(.2,.7,.3,1);
+}
+.thread-copy.is-revealed > * {
+  opacity: 1;
+  transform: none;
+}
+.thread-copy.is-revealed p { transition-delay: 160ms; }
+.intro.thread-intro .intro-skip {
+  z-index: 2;
+  min-height: 44px;
+  padding: 0 .4rem;
+  color: #f5c8d4;
+  border-color: #f1bbd064;
+  font-size: .8rem;
+}
+.intro.thread-intro .intro-skip:is(:hover, :focus-visible) {
+  color: #fff3ed;
+  border-color: currentColor;
+}
+.intro.thread-intro .intro-skip:focus-visible {
+  outline: 1px solid #f1bbd0;
+  outline-offset: 5px;
+}
+@media (max-width: 680px) and (orientation: portrait) {
+  .thread-main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-items: center;
+    row-gap: clamp(.15rem, 2svh, 1rem);
+    width: 92%;
+  }
+  .thread-portrait { width: min(71vw, 45svh, 20rem); }
+  .thread-copy { text-align: center; padding-bottom: 0; }
+  .thread-copy h1 { font-size: clamp(2rem, 8.9vw, 3.8rem); }
+  .thread-copy p { font-size: clamp(1rem, 4.5vw, 1.4rem); margin-top: .65rem; }
+}
+@media (max-height: 460px) and (orientation: landscape) {
+  .thread-main { width: min(82%, 54rem); }
+  .thread-portrait { width: min(100%, 70svh); }
+  .thread-copy h1 { font-size: clamp(1.65rem, 6vw, 3.25rem); }
+  .thread-copy p { font-size: clamp(.95rem, 3.4vw, 1.3rem); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .intro.leaving { transition: none; }
+  .thread-intro.is-sliding { transition: none; }
+  .thread-copy.is-revealed > * { transition: none; }
 }
