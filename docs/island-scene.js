@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
 import {createIslandCamera} from './island-camera.js?v=32.0';
-import {createIslandWorld} from './island-world.js?v=33.0';
+import {createIslandWorld} from './island-world.js?v=37.0';
 import {makeAcademicModels} from './island-models-academic.js?v=31.0';
 import {makeLifeModels} from './island-models-life.js?v=31.0';
 
@@ -12,7 +12,6 @@ export function setupIslandScene(home) {
   const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.6));
   renderer.toneMapping=THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure=1.13;
   const scene=new THREE.Scene();
   const camera=new THREE.OrthographicCamera(-1,1,1,-1,.1,130);
   const models={...makeAcademicModels(THREE),...makeLifeModels(THREE)};
@@ -119,6 +118,17 @@ export function setupIslandScene(home) {
     resetButton.hidden=orbit.isOverview() && document.activeElement!==resetButton;
     schedule();
   }
+
+  function updateTheme() {
+    const day = document.documentElement.dataset.theme === 'day';
+    world.setDaylight(day);
+    renderer.toneMappingExposure = day ? 1.26 : 1.13;
+    dirty = true;
+    schedule();
+  }
+
+  document.addEventListener('site-theme-change',updateTheme);
+  updateTheme();
 
   for(const link of labels) {
     link.addEventListener('focus',()=>{

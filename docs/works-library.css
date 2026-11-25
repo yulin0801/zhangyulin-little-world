@@ -65,7 +65,7 @@
   margin-inline: auto;
 }
 .paper-library-shelf.works-rack-stage {
-  width: min(100%, 51rem);
+  width: min(100%, 72rem);
 }
 .paper-count { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .paper-empty p { margin: 0; color: var(--muted); }
@@ -106,6 +106,14 @@ body.paper-dialog-open { overflow: hidden; }
 .paper-reader-dialog .reader-layout { display: block; }
 .paper-reader-dialog .reader-toolbar { top: -1px; }
 .paper-reader-dialog .reader-pages figure { scroll-margin-top: 5rem; }
+[data-theme="day"] .paper-topics button { background: #fffafd; }
+[data-theme="day"] .paper-topics button[aria-pressed="true"] { background: #efbec9; }
+[data-theme="day"] .paper-search input { background: #fffafd; color-scheme: light; }
+[data-theme="day"] .paper-search input::placeholder { color: var(--muted); }
+[data-theme="day"] .paper-reader-dialog { background: #fff9fc; border-color: var(--line); }
+[data-theme="day"] .paper-dialog-bar { background: #fbe1ed; }
+[data-theme="day"] .paper-dialog-bar :is(a, button), [data-theme="day"] .paper-reader-dialog .detail-heading h2 { color: var(--ink); }
+[data-theme="day"] .paper-dialog-bar :is(a, button):hover { color: var(--accent); }
 @media(max-width: 1020px) {
   .paper-library-tools { flex-direction: column; align-items: stretch; gap: .75rem; }
   .paper-search { flex-basis: auto; max-width: 25rem; order: -1; }

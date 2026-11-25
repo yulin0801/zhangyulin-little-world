@@ -3,7 +3,7 @@ import {honorsWall} from './honors-motion.js?v=30.0';
 import {projects,videos} from './projects.js?v=24.0';
 import {topics} from './catalogue.js?v=22.1';
 import {audioWorks} from './audio-works.js?v=30.0';
-import {paperLibraryMarkup} from './works-library.js?v=35.0';
+import {paperLibraryMarkup} from './works-library.js?v=37.0';
 const e=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function worksRoute(format='text',topic='all',query=''){
  const p=new URLSearchParams({format});if(format==='text'&&topic!=='all')p.set('topic',topic);

@@ -40,7 +40,7 @@ body[data-view="home"]{background:#14162e;color:#fff3ed}
   width:min(100%,max(38rem,calc((100svh - 10.25rem) * 1.28533)),76rem);
   aspect-ratio:964/750;
   overflow:hidden;
-  background:url('assets/island-overview.png?v=33.0') center/100% 100% no-repeat;
+  background:url('island-overview-night.png') center/100% 100% no-repeat;
 }
 .island-viewport.is-ready{background-image:none}
 .island-canvas{

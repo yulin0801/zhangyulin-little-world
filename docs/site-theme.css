@@ -1,0 +1,61 @@
+.theme-switch {
+  --theme-border: #a48ba7;
+  --theme-bg: #22243a;
+  --theme-text: #fff1eb;
+  --theme-selected: #ffd3df;
+  --theme-selected-text: #3e283c;
+  display: inline-flex;
+  width: max-content;
+  flex: 0 0 auto;
+  padding: 3px;
+  border: 1px solid var(--theme-border);
+  border-radius: 999px;
+  background: var(--theme-bg);
+}
+.theme-switch button {
+  min-height: 34px;
+  padding: 0 .6rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--theme-text);
+  font: 500 .8rem/1 system-ui, sans-serif;
+  white-space: nowrap;
+}
+.theme-switch button[aria-pressed="true"] {
+  background: var(--theme-selected);
+  color: var(--theme-selected-text);
+}
+.theme-switch button[aria-pressed="false"]:hover { background: color-mix(in srgb, var(--theme-text) 14%, transparent); }
+.theme-switch button:focus-visible { outline: 2px solid var(--theme-text); outline-offset: 2px; }
+.site-header-actions { display: flex; flex: 0 0 auto; align-items: center; gap: .4rem; }
+.island-theme-switch { position: absolute; z-index: 2; inset: 1rem 1.25rem auto auto; }
+.island-home:has(.island-theme-switch:not([hidden])) .island-layout { padding-top: max(4.5rem, 7vh); }
+
+html[data-theme="day"] { color-scheme: light; }
+[data-theme="day"] .theme-switch {
+  --theme-border: #be83a2;
+  --theme-bg: #fffbfd;
+  --theme-text: #61294b;
+  --theme-selected: #f3c2d7;
+  --theme-selected-text: #452136;
+}
+[data-theme="day"] body[data-view="home"] { background: #fff5f1; color: #3d2b45; }
+[data-theme="day"] .island-home {
+  background: radial-gradient(ellipse at 51% 49%, #d1e9f3 0, #e5f1f5 45%, #fff5ef 83%);
+}
+[data-theme="day"] .island-home::before { opacity: 0; }
+[data-theme="day"] .island-viewport:not(.is-ready) { background-image: url("island-overview-day.png"); }
+[data-theme="day"] #island-title { color: #3d2b45; }
+[data-theme="day"] .island-reset { background: #fff9fc; border-color: #be83a2; color: #61294b; }
+[data-theme="day"] .island-home :is(button, a, canvas):focus-visible { outline-color: #862553; }
+
+@media (min-width: 851px) and (max-width: 1100px) {
+  .site-header, .site-header nav { gap: 12px; }
+}
+@media (max-width: 450px) {
+  .site-header { padding-inline: 4%; gap: .5rem; }
+  .site-header-actions { gap: .18rem; }
+  .theme-switch button { padding-inline: .42rem; }
+  .island-theme-switch { right: .75rem; }
+}

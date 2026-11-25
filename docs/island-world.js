@@ -66,7 +66,8 @@ export function createIslandWorld(THREE, scene, models, names) {
     return new THREE.Vector3(u*cos+v*sin,0,-u*sin+v*cos);
   }
 
-  scene.add(new THREE.HemisphereLight(0xffe1ea,0x6861a1,2.35));
+  const sky = new THREE.HemisphereLight(0xffe1ea,0x6861a1,2.35);
+  scene.add(sky);
   const key = new THREE.DirectionalLight(0xffdbb7,2.22);
   key.position.set(-7,15,10);
   scene.add(key);
@@ -75,19 +76,22 @@ export function createIslandWorld(THREE, scene, models, names) {
   scene.add(rim);
 
   const waterTime = {value:0};
+  const daylight = {value:0};
   const water = new THREE.Mesh(new THREE.PlaneGeometry(86,86),new THREE.ShaderMaterial({
-    transparent:true, depthWrite:false, uniforms:{time:waterTime},
+    transparent:true, depthWrite:false, uniforms:{time:waterTime, daylight},
     vertexShader:`varying vec2 sea; varying vec2 screenPoint;
       void main(){sea=position.xy;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);screenPoint=gl_Position.xy/gl_Position.w;}`,
-    fragmentShader:`uniform float time; varying vec2 sea; varying vec2 screenPoint;
+    fragmentShader:`uniform float time; uniform float daylight; varying vec2 sea; varying vec2 screenPoint;
       void main(){
         vec2 p=sea;
-        float wave=sin(p.y*3.7+sin(p.x*1.13+time*.35)*.2+sin(p.x*.67)+time*.43);
+        float wave=sin(screenPoint.y*62.0+sin(screenPoint.x*13.0+time*.35)*.29+time*.36);
         float window=smoothstep(.21,.89,sin(p.x*1.57+p.y*.90)*sin(p.x*.48-p.y*1.36));
-        float lines=pow(max(0.0,wave),42.0)*window;
+        float lines=pow(max(0.0,wave),20.0)*window;
         float light=1.0-smoothstep(0.0,16.0,length(vec2(p.x*.91,p.y)));
         vec3 color=mix(vec3(.080,.084,.16),vec3(.245,.225,.404),light);
-        color+=vec3(.24,.20,.30)*lines*.43;
+        vec3 daySea=mix(vec3(.60,.77,.86),vec3(.34,.64,.75),light);
+        color=mix(color,daySea,daylight);
+        color+=mix(vec3(.24,.20,.30),vec3(.59,.76,.84),daylight)*lines*.24;
         float vignette=(1.0-smoothstep(.69,1.0,abs(screenPoint.x)))*(1.0-smoothstep(.72,1.0,abs(screenPoint.y)));
         gl_FragColor=vec4(color,.85*(1.0-smoothstep(8.0,19.0,length(p)))*vignette);
       }`,
@@ -334,18 +338,19 @@ export function createIslandWorld(THREE, scene, models, names) {
     buoys.push(buoy);
   }
 
-  const life=selectedObjects.get('life').group;
-  const rainfall=Array.from({length:35},()=>({x:random()*4.7-2.35,y:random()*3.3,z:random()*4.4-2.2}));
-  const rainVertices=new Float32Array(rainfall.length*6);
-  const rainGeometry=new THREE.BufferGeometry();
-  rainGeometry.setAttribute('position',new THREE.BufferAttribute(rainVertices,3).setUsage(THREE.DynamicDrawUsage));
-  const rain=new THREE.LineSegments(rainGeometry,new THREE.LineBasicMaterial({color:0xf0d3ed,transparent:true,opacity:.33,depthWrite:false}));
-  rain.frustumCulled=false;
-  life.add(rain);
+  function setDaylight(day) {
+    daylight.value = Number(day);
+    sky.color.setHex(day ? 0xf3faff : 0xffe1ea);
+    sky.groundColor.setHex(day ? 0xb8afaa : 0x6861a1);
+    key.color.setHex(day ? 0xfff5e6 : 0xffdbb7);
+    rim.color.setHex(day ? 0xffecdb : 0xa0b9ff);
+    rim.intensity = day ? .58 : 1.42;
+    mist.visible = !day;
+  }
 
   function tick(elapsed,delta,highlight,reduced) {
     waterTime.value=reduced?0:elapsed;
-    lighthouseGlow.material.opacity=reduced?.93:(.82+.13*Math.sin(elapsed*1.4));
+    lighthouseGlow.material.opacity=daylight.value?.18:reduced?.93:(.82+.13*Math.sin(elapsed*1.4));
     if(!reduced) {
       mist.position.x=Math.sin(elapsed*.14)*.31;
       buoys.forEach((buoy,i)=>{buoy.position.y=-1.28+Math.sin(elapsed*1.12+i)*.059;});
@@ -354,12 +359,6 @@ export function createIslandWorld(THREE, scene, models, names) {
       const angle=i*Math.PI*2/memories.length+(reduced?.12:elapsed*.23);
       orb.position.set(Math.cos(angle)*1.40,1.69+Math.sin(angle*2)*.35,Math.sin(angle)*1.4);
     });
-    rainfall.forEach(({x,y,z},i)=>{
-      const h=(y+3.4-((reduced?0:elapsed*2.55)%3.4))%3.4;
-      const offset=i*6;
-      rainVertices.set([x,h,z,x+.08,h+.15,z+.012],offset);
-    });
-    rainGeometry.attributes.position.needsUpdate=true;
     for(const [id,{group,model,haloMaterial,glimmer}] of selectedObjects) {
       const hovered=id===highlight;
       const step=reduced?1:1-Math.exp(-delta*10);
@@ -371,5 +370,5 @@ export function createIslandWorld(THREE, scene, models, names) {
     }
   }
 
-  return {clickable, tick};
+  return {clickable, setDaylight, tick};
 }

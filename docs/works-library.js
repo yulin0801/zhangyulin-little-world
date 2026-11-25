@@ -1,4 +1,4 @@
-import {mountWorksRack} from './works-rack.js?v=35.0';
+import {mountWorksRack} from './works-rack.js?v=37.0';
 import {renderSubjectShelf} from './subject-shelf.js?v=35.0';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char =>

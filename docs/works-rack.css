@@ -22,7 +22,7 @@
   position: relative;
   display: grid;
   place-items: center;
-  height: clamp(424px, 69svh, 600px);
+  height: clamp(315px, calc(100svh - 158px), 46rem);
   overflow: clip;
   perspective: 1080px;
   perspective-origin: 50% 46%;
@@ -31,6 +31,7 @@
   user-select: none;
 }
 .rack-view:focus-visible { outline: 2px solid #efabc4; outline-offset: -5px; }
+.rack-view.rack-pan-mode { cursor: move; touch-action: none; }
 .rack-view.rack-is-dragging, .rack-is-dragging .rack-booklet { cursor: grabbing; }
 .rack-view::before {
   content: "";
@@ -39,8 +40,9 @@
   bottom: 7%;
   width: calc(var(--rack-width) * 2.7);
   height: calc(var(--rack-unit) * 81);
-  transform: translateX(-50%);
+  transform: translate(-50%, 0) translate(var(--rack-pan-x, 0px), var(--rack-pan-y, 0px)) scale(var(--rack-scale, 1));
   border-radius: 50%;
+  transition-property: none;
   background: radial-gradient(ellipse, #100f26cf 8%, #17142ab5 33%, transparent 72%);
   pointer-events: none;
 }
@@ -49,7 +51,8 @@
   position: relative;
   width: 0;
   height: 0;
-  transform: translateY(calc(var(--rack-unit) * -8)) rotateX(9deg);
+  transition-property: none;
+  transform: translate(var(--rack-pan-x, 0px), var(--rack-pan-y, 0px)) scale3d(var(--rack-scale, 1), var(--rack-scale, 1), var(--rack-scale, 1)) translateY(calc(var(--rack-unit) * -8)) rotateX(9deg);
   pointer-events: none;
 }
 .rack-spinner { transform: rotateY(var(--rack-angle, 34deg)); }
@@ -209,12 +212,12 @@
   flex-wrap: wrap;
   gap: .3rem .7rem;
   padding: .65rem 1rem;
-  border-top: 1px solid #ead5f02b;
+  border-bottom: 1px solid #ead5f02b;
   background: #19192fe0;
 }
-.rack-instruction { margin: 0; color: #ebcbd5; font-size: .825rem; }
-.rack-turn-controls { display: flex; align-items: center; gap: .5rem; }
-.rack-turn-controls button {
+.rack-instruction { margin: 0; padding: .55rem 1rem .7rem; color: #ebcbd5; font-size: .825rem; text-align: center; }
+.rack-turn-controls, .rack-view-controls { display: flex; align-items: center; gap: .5rem; }
+.rack-actions button {
   min-height: 2.5rem;
   padding: .35rem .6rem;
   border: 1px solid #c7afcb52;
@@ -224,13 +227,25 @@
   font-size: .8rem;
   white-space: nowrap;
 }
-.rack-turn-controls button:hover, .rack-turn-controls button:focus-visible { border-color: #efaec9; background: #5c4260; }
-.rack-face-count { color: #e3bdd3; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.rack-actions button:enabled:is(:hover, :focus-visible, [aria-pressed="true"]) { border-color: #efaec9; background: #5c4260; }
+.rack-actions button:disabled { opacity: .45; cursor: default; }
+.rack-face-count, .rack-zoom-level { color: #e3bdd3; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.rack-zoom-level { min-width: 4ch; text-align: center; }
+[data-theme="day"] .works-rack-stage {
+  border-color: #d9a8bf;
+  color: #442e45;
+  background: radial-gradient(ellipse at 34% 35%, #fffafa, #f4e2ee 55%, #e6d9ed);
+}
+[data-theme="day"] .rack-view::before { background: radial-gradient(ellipse, #7b5b8050 6%, #94779c26 33%, transparent 72%); }
+[data-theme="day"] .rack-actions { background: #fffbfd; border-color: #e7bfd4; }
+[data-theme="day"] .rack-actions button { color: #522a43; border-color: #d9a8bf; background: #f9e8f0; }
+[data-theme="day"] .rack-actions button:enabled:is(:hover, :focus-visible, [aria-pressed="true"]) { border-color: #a55780; background: #f2c9df; }
+[data-theme="day"] :is(.rack-instruction, .rack-face-count, .rack-zoom-level) { color: #714363; }
 @container (max-width: 445px) {
-  .rack-view { height: clamp(404px, 90cqw + 94px, 450px); }
-  .rack-actions { padding: .5rem; justify-content: center; }
-  .rack-instruction { flex: 1 1 100%; text-align: center; font-size: .78rem; }
-  .rack-turn-controls button { min-height: 2.75rem; }
+  .rack-view { height: clamp(320px, 88cqw + 70px, 450px); }
+  .rack-actions { padding: .5rem; justify-content: center; gap: .35rem .7rem; }
+  .rack-instruction { font-size: .78rem; }
+  .rack-actions button { min-height: 2.75rem; }
 }
 @container (max-width: 305px) {
   .rack-view { --rack-unit: .65px; }
